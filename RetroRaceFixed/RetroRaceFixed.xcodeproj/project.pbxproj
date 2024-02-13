@@ -18,6 +18,7 @@
 		0860DF4F2B7BD1E9000CF559 /* RetroRaceFixedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF4E2B7BD1E9000CF559 /* RetroRaceFixedTests.swift */; };
 		0860DF592B7BD1E9000CF559 /* RetroRaceFixedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF582B7BD1E9000CF559 /* RetroRaceFixedUITests.swift */; };
 		0860DF5B2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF5A2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift */; };
+		0860DF682B7BD3DF000CF559 /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF672B7BD3DF000CF559 /* MapBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		0860DF542B7BD1E9000CF559 /* RetroRaceFixedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RetroRaceFixedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0860DF582B7BD1E9000CF559 /* RetroRaceFixedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroRaceFixedUITests.swift; sourceTree = "<group>"; };
 		0860DF5A2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroRaceFixedUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0860DF672B7BD3DF000CF559 /* MapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				0860DF3E2B7BD1E7000CF559 /* Main.storyboard */,
 				0860DF412B7BD1E9000CF559 /* Assets.xcassets */,
 				0860DF432B7BD1E9000CF559 /* LaunchScreen.storyboard */,
+				0860DF672B7BD3DF000CF559 /* MapBuilder.swift */,
 			);
 			path = RetroRaceFixed;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0860DF682B7BD3DF000CF559 /* MapBuilder.swift in Sources */,
 				0860DF3B2B7BD1E7000CF559 /* GameScene.swift in Sources */,
 				0860DF3D2B7BD1E7000CF559 /* GameViewController.swift in Sources */,
 				0860DF352B7BD1E7000CF559 /* AppDelegate.swift in Sources */,
