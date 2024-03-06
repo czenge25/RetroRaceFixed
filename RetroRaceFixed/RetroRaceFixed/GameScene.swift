@@ -49,6 +49,7 @@ class GameScene: SKScene {
     var playerSpeedX: CGFloat = 1.0
     var playerSpeedY: CGFloat = 1.0
     
+    
     // Pi constant
     let pi = CGFloat.pi
 
@@ -65,8 +66,9 @@ class GameScene: SKScene {
         xArrow = joystick?.childNode(withName: "xArrow")
         yArrow = joystick?.childNode(withName: "yArrow")
         
-        joystick?.position = CGPoint(x: -300,y: -100)
+        joystick?.position = CGPoint(x: -275 ,y: -75)
         joystickKnob?.position = CGPoint(x: 0, y: 0)
+        joystickKnob?.zPosition = 4
         xArrow?.position = CGPoint(x: 0, y: 0)
         yArrow?.position = CGPoint(x: 0, y: 0)
         joystick?.zPosition = 3
@@ -141,6 +143,7 @@ class GameScene: SKScene {
 extension GameScene {
     // Touch Began
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        joystickAction = true
         for touch in touches {
             // Check if the touch is on the brakeButton
             if let brakeButton = brakeButton {
@@ -183,19 +186,10 @@ extension GameScene {
     
     // Touch End
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        isBraking = false
-        for touch in touches {
-            // Check joystick coordinates and reset knob position if necessary
-            let xJoystickCoordinate = touch.location(in: joystick!).x
-            let xLimit: CGFloat = 200.0
-            if xJoystickCoordinate > -xLimit && xJoystickCoordinate < xLimit {
-                resetKnobPosition()
-            }
-            let yJoystickCoordinate = touch.location(in: joystick!).y
-            let yLimit: CGFloat = 200.0
-            if yJoystickCoordinate > -yLimit && yJoystickCoordinate < yLimit {
-                resetKnobPosition()
-            }
+        for _ in touches {
+            resetKnobPosition()
+            
+            
         }
     }
 }
@@ -247,7 +241,7 @@ extension GameScene {
         if isTouchingRoad {
                 friction = 0.7
                 currentAcceleration = acceleration
-            currentMaxSpeed = maxSpeed
+                currentMaxSpeed = maxSpeed
             } else {
                 friction = 0.3
                 currentMaxSpeed = grassMaxSpeed
@@ -282,6 +276,20 @@ extension GameScene {
              */
             
             let angle = atan2(yForce, xForce)
+            
+            // Kill orthogonal velocity
+            let playerVelocityX = player?.physicsBody?.velocity.dx ?? 0
+            let playerVelocityY = player?.physicsBody?.velocity.dy ?? 0
+
+            // Calculate the x and y components of the velocity parallel to the joystick direction
+            let parallelVelocityX = playerVelocityX * cos(angle)
+            let parallelVelocityY = playerVelocityY * sin(angle)
+
+            // Calculate the total parallel velocity by summing the x and y components
+            let parallelVelocity = parallelVelocityX + parallelVelocityY
+            
+            player?.physicsBody?.velocity.dx = parallelVelocity * cos(angle)
+            player?.physicsBody?.velocity.dy = parallelVelocity * sin(angle)
             
             // Apply the force in the direction of the joystick
             let impulse = CGVector(dx: xForce, dy: yForce)
