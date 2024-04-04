@@ -31,9 +31,8 @@ class GameScene: SKScene {
     var friction: CGFloat = 0.995
     
     // MapBuilder vars
-    var sceneName : String?
     var mp : MapBuilder?
-    var roadTileArray: [SKSpriteNode] = []
+    var roadTileArray : [SKSpriteNode] = []
 
     // Camera var
     var sceneCamera : SKCameraNode = SKCameraNode()
@@ -49,6 +48,9 @@ class GameScene: SKScene {
     var playerSpeedX: CGFloat = 1.0
     var playerSpeedY: CGFloat = 1.0
     
+    // Win message
+    var hasPrintedWinMessage = false
+    var winLabel: SKLabelNode?
     
     // Pi constant
     let pi = CGFloat.pi
@@ -66,24 +68,22 @@ class GameScene: SKScene {
         xArrow = joystick?.childNode(withName: "xArrow")
         yArrow = joystick?.childNode(withName: "yArrow")
         
-        joystick?.position = CGPoint(x: -275 ,y: -75)
         joystickKnob?.position = CGPoint(x: 0, y: 0)
-        joystickKnob?.zPosition = 4
+        joystickKnob?.zPosition = 5
         xArrow?.position = CGPoint(x: 0, y: 0)
         yArrow?.position = CGPoint(x: 0, y: 0)
-        joystick?.zPosition = 3
+        joystick?.zPosition = 4
         
         player?.position = CGPoint(x: 0,y: 0)
-        player?.zPosition = 2
+        player?.zPosition = 3
         
         
         // Create brake button as SKSpriteNode
         let brakeButtonTexture = SKTexture(imageNamed: "BrakeButton")
         brakeButton = SKSpriteNode(texture: brakeButtonTexture)
-        brakeButton?.scale(to: CGSize(width: 100, height: 300))
+        brakeButton?.scale(to: CGSize(width: 200, height: 600))
         brakeButton?.name = "brakeButton"
-        brakeButton?.zPosition = 3
-        brakeButton?.position = CGPoint(x: 300, y: -175)
+        brakeButton?.zPosition = 4
         
         addChild(brakeButton!)
 
@@ -97,45 +97,9 @@ class GameScene: SKScene {
         player?.position = CGPoint(x: 0, y: 0)
         
 // MARK: Map Selection
-        mp = MapBuilder(scene: "Tutorial")
-        sceneName = mp?.scene
+        mp = MapBuilder(scene: self, level: "Tutorial")
         
-        if (sceneName == "Tutorial") {
-            // Creating road tiles
-            var count = 0...5
-            for i in count {
-                let roadTile = SKSpriteNode(imageNamed: "Road_01_Tile_03")
-                roadTileArray.append(roadTile)
-                roadTile.yScale = 0.25
-                roadTile.xScale = 1.75
-                roadTile.zPosition = 1
-                roadTile.position.x = CGFloat(896 * i)
-                roadTile.position.y = 0
-                addChild(roadTile)
-            }
-            
-            // Creating grass tiles
-            count = 0...15
-            var numbers = 0...25
-            for i in numbers {
-                for j in count {
-                    let grassTile = SKSpriteNode(imageNamed: "Grass_Tile")
-                    grassTile.yScale = 0.5
-                    grassTile.xScale = 0.5
-                    grassTile.zPosition = 0
-                    grassTile.position.x = CGFloat(256 * i) - 1280
-                    grassTile.position.y = CGFloat(256 * j) - 2560
-                    addChild(grassTile)
-                }
-            }
-            
-        } else if (sceneName == "Level1") {
-            // Code for Level1
-        } else if (sceneName == "Level2") {
-            // Code for Level2
-        } else {
-            // Code for other scenes
-        }
+        roadTileArray = mp!.roadTileArray
     }
 }
 
@@ -188,8 +152,6 @@ extension GameScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for _ in touches {
             resetKnobPosition()
-            
-            
         }
     }
 }
@@ -207,6 +169,18 @@ extension GameScene {
 
 // MARK: Game Loop
 extension GameScene {
+    
+    // Show the win message for the player
+    func showWinMessage() {
+        winLabel = SKLabelNode(text: "You win!")
+        winLabel?.fontName = "Arial"
+        winLabel?.fontSize = 50
+        winLabel?.fontColor = .white
+        winLabel?.zPosition = 5
+        winLabel?.alpha = 1
+        addChild(winLabel!)
+    }
+    
     // Game loop for player movement and actions
     override func update(_ currentTime: TimeInterval) {
         // Update camera position based on player position
@@ -214,8 +188,8 @@ extension GameScene {
         camera?.position.y = player?.position.y ?? 0
         
         // Update joystick position based on camera position
-        joystick?.position.x = (camera?.position.x ?? 0) - 300
-        joystick?.position.y = (camera?.position.y ?? 0) - 100
+        joystick?.position.x = (camera?.position.x ?? 0) - 600
+        joystick?.position.y = (camera?.position.y ?? 0) - 200
         
         let deltaTime = currentTime - previousTimeInterval
         previousTimeInterval = currentTime
@@ -225,8 +199,8 @@ extension GameScene {
         let xPosition = Double(joystickKnob.position.x)
         let yPosition = Double(joystickKnob.position.y)
         
-        brakeButton?.position.x = (player?.position.x ?? 0) + 300
-        brakeButton?.position.y = (player?.position.y ?? 0) - 175
+        brakeButton?.position.x = (player?.position.x ?? 0) + 575
+        brakeButton?.position.y = (player?.position.y ?? 0) - 350
         
         for roadTileArray in self.roadTileArray {
             if player?.frame.intersects(roadTileArray.frame) ?? false {
@@ -322,10 +296,23 @@ extension GameScene {
             }
         }
         
-        print("Player Position: \(player?.position ?? .zero)")
+        mp?.checkWinCondition()
+            
+        // Display win message if win condition is met
+        if mp?.getWinCondition() ?? false {
+            if let winLabel = winLabel {
+                winLabel.position = CGPoint(x: player?.position.x ?? 0, y: player?.position.y ?? 0)
+            }
+            winLabel?.position = CGPoint(x: player?.position.x ?? 0, y: player?.position.y ?? 0)
+            if !hasPrintedWinMessage {
+                showWinMessage()
+                hasPrintedWinMessage = true
+            }
+        }
+        
+        print("Joystick Position: \(joystick?.position ?? .zero)")
         print("Player Is Hidden: \(player?.isHidden ?? true)")
         print("Joystick Action: \(joystickAction)")
-        print(isTouchingRoad)
     }
 }
 
