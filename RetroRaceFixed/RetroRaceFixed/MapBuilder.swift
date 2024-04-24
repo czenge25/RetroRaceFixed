@@ -18,18 +18,17 @@ class MapBuilder {
     
     var finishLine: SKSpriteNode
     
+    var boundary: CGRect
+    
     init(scene: GameScene, level: String) {
         self.scene = scene
         self.level = level
         self.winCondition = false
         self.finishLine = SKSpriteNode(imageNamed: "Finish")
+        self.boundary = CGRect(x: 0, y: 0, width: 0, height: 0)
         
         // Additional setup code can go here
         setupMap()
-    }
-    
-    public func getWinCondition() -> Bool {
-        return winCondition
     }
     
     public func checkWinCondition() {
@@ -47,6 +46,8 @@ class MapBuilder {
             
         
         } else if (level == "Tutorial") {
+            
+            boundary = CGRect(x: -1280, y: -2560, width: 2560, height: 5120)
             
             var lastRoadPosition = CGPoint.zero
             

@@ -19,6 +19,7 @@
 		0860DF592B7BD1E9000CF559 /* RetroRaceFixedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF582B7BD1E9000CF559 /* RetroRaceFixedUITests.swift */; };
 		0860DF5B2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF5A2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift */; };
 		0860DF682B7BD3DF000CF559 /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF672B7BD3DF000CF559 /* MapBuilder.swift */; };
+		08826FA72BBEF39C007CDF39 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08826FA62BBEF39C007CDF39 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		0860DF582B7BD1E9000CF559 /* RetroRaceFixedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroRaceFixedUITests.swift; sourceTree = "<group>"; };
 		0860DF5A2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroRaceFixedUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0860DF672B7BD3DF000CF559 /* MapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
+		08826FA62BBEF39C007CDF39 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				0860DF412B7BD1E9000CF559 /* Assets.xcassets */,
 				0860DF432B7BD1E9000CF559 /* LaunchScreen.storyboard */,
 				0860DF672B7BD3DF000CF559 /* MapBuilder.swift */,
+				08826FA62BBEF39C007CDF39 /* Player.swift */,
 			);
 			path = RetroRaceFixed;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				0860DF682B7BD3DF000CF559 /* MapBuilder.swift in Sources */,
 				0860DF3B2B7BD1E7000CF559 /* GameScene.swift in Sources */,
 				0860DF3D2B7BD1E7000CF559 /* GameViewController.swift in Sources */,
+				08826FA72BBEF39C007CDF39 /* Player.swift in Sources */,
 				0860DF352B7BD1E7000CF559 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
