@@ -19,6 +19,7 @@
 		0860DF592B7BD1E9000CF559 /* RetroRaceFixedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF582B7BD1E9000CF559 /* RetroRaceFixedUITests.swift */; };
 		0860DF5B2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF5A2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift */; };
 		0860DF682B7BD3DF000CF559 /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF672B7BD3DF000CF559 /* MapBuilder.swift */; };
+		7CEBD5B42BBEF26600E72C8A /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBD5B32BBEF26600E72C8A /* MainMenuScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		0860DF582B7BD1E9000CF559 /* RetroRaceFixedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroRaceFixedUITests.swift; sourceTree = "<group>"; };
 		0860DF5A2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroRaceFixedUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0860DF672B7BD3DF000CF559 /* MapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
+		7CEBD5B32BBEF26600E72C8A /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				0860DF412B7BD1E9000CF559 /* Assets.xcassets */,
 				0860DF432B7BD1E9000CF559 /* LaunchScreen.storyboard */,
 				0860DF672B7BD3DF000CF559 /* MapBuilder.swift */,
+				7CEBD5B32BBEF26600E72C8A /* MainMenuScene.swift */,
 			);
 			path = RetroRaceFixed;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CEBD5B42BBEF26600E72C8A /* MainMenuScene.swift in Sources */,
 				0860DF682B7BD3DF000CF559 /* MapBuilder.swift in Sources */,
 				0860DF3B2B7BD1E7000CF559 /* GameScene.swift in Sources */,
 				0860DF3D2B7BD1E7000CF559 /* GameViewController.swift in Sources */,
