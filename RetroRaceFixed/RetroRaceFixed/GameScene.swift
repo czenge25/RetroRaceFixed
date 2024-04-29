@@ -323,6 +323,7 @@ extension GameScene {
             if let winLabel = winLabel {
                 winLabel.position = CGPoint(x: player?.position.x ?? 0, y: player?.position.y ?? 0)
             }
+            mp?.level = "WinScene"
             winLabel?.position = CGPoint(x: player?.position.x ?? 0, y: player?.position.y ?? 0)
             if !hasPrintedWinMessage {
                 showWinMessage()

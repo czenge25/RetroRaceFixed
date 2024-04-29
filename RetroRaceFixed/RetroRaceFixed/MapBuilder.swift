@@ -35,24 +35,27 @@ class MapBuilder {
         if (level == "Tutorial") {
             if let player = scene.player, player.frame.intersects(finishLine.frame) {
                 winCondition = true
+                if winCondition {
+                scene.isHidden = true
+
+                let winScene = WinScene(size: scene.size)
+                winScene.scaleMode = .aspectFill
+                scene.view?.presentScene(winScene, transition: SKTransition.fade(withDuration: 0.5))
+                }
             }
         }
     }
     
     public func setupMap() {
-        
-        if (level == "WinScreen") {
-            
-            
-        
-        } else if (level == "Tutorial") {
+
+        if (level == "Tutorial") {
             
             boundary = CGRect(x: -1280, y: -2560, width: 2560, height: 5120)
             
             var lastRoadPosition = CGPoint.zero
             
             // Creating road tiles
-            var count = 0...2
+            var count = 0...5
             for i in count {
                 let roadTile = SKSpriteNode(imageNamed: "Road_01_Tile_03")
                 roadTileArray.append(roadTile)
@@ -68,17 +71,31 @@ class MapBuilder {
             // Creating grass tiles
             count = 0...15
             var numbers = 0...25
+            
+            var minX = CGFloat.infinity
+            var minY = CGFloat.infinity
+            var maxX: CGFloat = 0
+            var maxY: CGFloat = 0
+            
             for i in numbers {
                 for j in count {
                     let grassTile = SKSpriteNode(imageNamed: "Grass_Tile")
                     grassTile.yScale = 0.5
                     grassTile.xScale = 0.5
                     grassTile.zPosition = 0
-                    grassTile.position.x = CGFloat(Int(grassTile.size.width) * i) - 1280
-                    grassTile.position.y = CGFloat(Int(grassTile.size.height) * j) - 2560
+                    let grassTileX = CGFloat(Int(grassTile.size.width) * i) - 1280
+                    let grassTileY = CGFloat(Int(grassTile.size.height) * j) - 2560
+                    grassTile.position = CGPoint(x: grassTileX, y: grassTileY)
                     scene.addChild(grassTile)
+                    
+                    minX = min(minX, grassTileX - (grassTile.size.width / 2))
+                    minY = min(minY, grassTileY - (grassTile.size.height / 2))
+                    maxX = max(maxX, grassTileX + (grassTile.size.width / 2))
+                    maxY = max(maxY, grassTileY + (grassTile.size.height / 2))
                 }
             }
+            
+            boundary = CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
             
             finishLine.position = CGPoint(x: lastRoadPosition.x + (roadTileArray[0].size.width / 2) - (finishLine.size.height / 10.5), y: lastRoadPosition.y)
             finishLine.zPosition = 2
