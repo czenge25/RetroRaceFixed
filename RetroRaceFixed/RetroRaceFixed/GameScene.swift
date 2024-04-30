@@ -31,8 +31,9 @@ class GameScene: SKScene {
     var friction: CGFloat = 0.995
     
     // MapBuilder vars
-    var mp : MapBuilder?
-    var roadTileArray : [SKSpriteNode] = []
+    var mp: MapBuilder?
+    var roadTileArray: [SKSpriteNode] = []
+    var boundary: CGRect?
 
     // Camera var
     var sceneCamera : SKCameraNode = SKCameraNode()
@@ -296,13 +297,33 @@ extension GameScene {
             }
         }
         
+        boundary = mp?.boundary ?? CGRect(x: 0, y: 0, width: 0, height: 0)
+        
+        // Keep player inside boundary
+        if let playerPosition = player?.position, !boundary!.contains(playerPosition) {
+            // Calculate the position correction to keep the player within the boundary
+            var correctedPosition = playerPosition
+            if playerPosition.x < boundary!.minX {
+                correctedPosition.x = boundary!.minX
+            } else if playerPosition.x > boundary!.maxX {
+                correctedPosition.x = boundary!.maxX
+            }
+            if playerPosition.y < boundary!.minY {
+                correctedPosition.y = boundary!.minY
+            } else if playerPosition.y > boundary!.maxY {
+                correctedPosition.y = boundary!.maxY
+            }
+            player?.position = correctedPosition
+        }
+        
         mp?.checkWinCondition()
             
         // Display win message if win condition is met
-        if mp?.getWinCondition() ?? false {
+        if mp?.winCondition ?? false {
             if let winLabel = winLabel {
                 winLabel.position = CGPoint(x: player?.position.x ?? 0, y: player?.position.y ?? 0)
             }
+            mp?.level = "WinScene"
             winLabel?.position = CGPoint(x: player?.position.x ?? 0, y: player?.position.y ?? 0)
             if !hasPrintedWinMessage {
                 showWinMessage()
