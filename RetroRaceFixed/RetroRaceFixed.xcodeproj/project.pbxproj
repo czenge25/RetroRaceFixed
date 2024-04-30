@@ -19,6 +19,9 @@
 		0860DF592B7BD1E9000CF559 /* RetroRaceFixedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF582B7BD1E9000CF559 /* RetroRaceFixedUITests.swift */; };
 		0860DF5B2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF5A2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift */; };
 		0860DF682B7BD3DF000CF559 /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF672B7BD3DF000CF559 /* MapBuilder.swift */; };
+		7C2813782BDFFC9E0078D100 /* audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7C2813762BDFFC9E0078D100 /* audio.mp3 */; };
+		7C2813792BDFFC9E0078D100 /* audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7C2813762BDFFC9E0078D100 /* audio.mp3 */; };
+		7C28137A2BDFFC9E0078D100 /* audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7C2813762BDFFC9E0078D100 /* audio.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,7 @@
 		0860DF582B7BD1E9000CF559 /* RetroRaceFixedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroRaceFixedUITests.swift; sourceTree = "<group>"; };
 		0860DF5A2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroRaceFixedUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0860DF672B7BD3DF000CF559 /* MapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
+		7C2813762BDFFC9E0078D100 /* audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 		0860DF282B7BD1E7000CF559 = {
 			isa = PBXGroup;
 			children = (
+				7C2813772BDFFC9E0078D100 /* sounds */,
 				0860DF332B7BD1E7000CF559 /* RetroRaceFixed */,
 				0860DF4D2B7BD1E9000CF559 /* RetroRaceFixedTests */,
 				0860DF572B7BD1E9000CF559 /* RetroRaceFixedUITests */,
@@ -132,6 +137,14 @@
 				0860DF5A2B7BD1E9000CF559 /* RetroRaceFixedUITestsLaunchTests.swift */,
 			);
 			path = RetroRaceFixedUITests;
+			sourceTree = "<group>";
+		};
+		7C2813772BDFFC9E0078D100 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				7C2813762BDFFC9E0078D100 /* audio.mp3 */,
+			);
+			path = sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0860DF402B7BD1E7000CF559 /* Main.storyboard in Resources */,
+				7C2813782BDFFC9E0078D100 /* audio.mp3 in Resources */,
 				0860DF372B7BD1E7000CF559 /* GameScene.sks in Resources */,
 				0860DF422B7BD1E9000CF559 /* Assets.xcassets in Resources */,
 				0860DF452B7BD1E9000CF559 /* LaunchScreen.storyboard in Resources */,
@@ -250,6 +264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C2813792BDFFC9E0078D100 /* audio.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C28137A2BDFFC9E0078D100 /* audio.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
