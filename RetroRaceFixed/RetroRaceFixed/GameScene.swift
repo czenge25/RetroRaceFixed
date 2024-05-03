@@ -55,6 +55,14 @@ class GameScene: SKScene {
     
     // Pi constant
     let pi = CGFloat.pi
+    
+    var stopwatchLabel: SKLabelNode?
+    var stopwatchTimer: Timer?
+    var startTime: Date?
+    var isRunning = false
+    var elapsedTime: TimeInterval = 0
+    
+    var bestTimeKey = "BestTime" // Key for storing the best time in UserDefaults
 
     // didMove
     override func didMove(to view: SKView) {
@@ -96,6 +104,16 @@ class GameScene: SKScene {
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
         player?.position = CGPoint(x: 0, y: 0)
+        
+        stopwatchLabel = SKLabelNode(text: "Time: 00:00")
+        stopwatchLabel?.fontName = "Arial"
+        stopwatchLabel?.fontSize = 20
+        stopwatchLabel?.fontColor = .white
+        stopwatchLabel?.zPosition = 5
+        addChild(stopwatchLabel!)
+        
+        // Start the stopwatch
+        startStopwatch()
         
 // MARK: Map Selection
         mp = MapBuilder(scene: self, level: "Tutorial")
@@ -173,13 +191,50 @@ extension GameScene {
     
     // Show the win message for the player
     func showWinMessage() {
-        winLabel = SKLabelNode(text: "You win!")
-        winLabel?.fontName = "Arial"
-        winLabel?.fontSize = 50
-        winLabel?.fontColor = .white
-        winLabel?.zPosition = 5
-        winLabel?.alpha = 1
-        addChild(winLabel!)
+        elapsedTime = Date().timeIntervalSince(startTime ?? Date())
+        stopStopwatch()
+        
+        // Retrieve the current best time from UserDefaults
+        var bestTime = UserDefaults.standard.double(forKey: bestTimeKey)
+        
+        // If there's no best time yet or if the current time is faster than the best time, update it
+        if bestTime == 0 || elapsedTime < bestTime {
+            bestTime = elapsedTime
+            // Store the new best time in UserDefaults
+            UserDefaults.standard.set(bestTime, forKey: bestTimeKey)
+        }
+        
+        transitionToWinScene()
+    }
+    
+    func startStopwatch() {
+        if !isRunning {
+            startTime = Date()
+            stopwatchTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+                guard let self = self, let startTime = self.startTime else { return }
+                let elapsedTime = Date().timeIntervalSince(startTime)
+                let minutes = Int(elapsedTime) / 60
+                let seconds = Int(elapsedTime) % 60
+                self.stopwatchLabel?.text = String(format: "Time: %02d:%02d", minutes, seconds)
+            }
+            isRunning = true
+        }
+    }
+    
+    func transitionToWinScene() {
+        if let view = view {
+            let winScene = WinScene(size: view.bounds.size)
+            winScene.scaleMode = .aspectFill
+            winScene.elapsedTime = elapsedTime // Pass the elapsed time to the WinScene
+            view.presentScene(winScene, transition: SKTransition.fade(withDuration: 0.5))
+        }
+    }
+        
+    // Method to stop the stopwatch
+    func stopStopwatch() {
+        stopwatchTimer?.invalidate()
+        stopwatchTimer = nil
+        isRunning = false
     }
     
     // Game loop for player movement and actions
@@ -202,6 +257,15 @@ extension GameScene {
         
         brakeButton?.position.x = (player?.position.x ?? 0) + 575
         brakeButton?.position.y = (player?.position.y ?? 0) - 350
+        
+        guard let label = stopwatchLabel, let scene = scene else { return }
+                
+        // Calculate the position of the label based on scene size
+        let xPos = brakeButton?.position.x
+        let yPos = (brakeButton?.position.y ?? 0) + 700
+        
+        // Set the position of the label
+        label.position = CGPoint(x: xPos ?? 0, y: yPos)
         
         for roadTileArray in self.roadTileArray {
             if player?.frame.intersects(roadTileArray.frame) ?? false {
