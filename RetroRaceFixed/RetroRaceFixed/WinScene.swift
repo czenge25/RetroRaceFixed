@@ -1,8 +1,7 @@
-//  WinScene.swift
-//  RetroRaceFixed
-//
-//  Created by Cameron Zenge on 4/29/24.
-//
+/*
+CZ, HK
+5/3/24
+ */
 
 import Foundation
 import SpriteKit

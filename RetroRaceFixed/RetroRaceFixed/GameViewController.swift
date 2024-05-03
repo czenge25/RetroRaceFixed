@@ -1,10 +1,7 @@
-
-//
-//  GameViewController.swift
-//  RetroRaceFixed
-//
-//  Created by Cameron Zenge on 2/13/24.
-//
+/*
+CZ, HK
+5/3/24
+ */
 
 import UIKit
 import SpriteKit
