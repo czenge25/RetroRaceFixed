@@ -62,7 +62,7 @@ To install and run the RetroRace game:
 3. Open the RetroRaceFixed project in Xcode.
 5. Build and run the project using the Xcode simulator or connect a physical device.
 
-Here are 2 images of a successful run (Image 1 is the title screen) (Image 2 is the game after pressing the start button:
+Here are 2 images of a successful run (Image 1 is the title screen) (Image 2 is the game after pressing the start button):
 <img width="1440" alt="Screenshot 2024-05-02 at 8 43 40 PM" src="https://github.com/czenge25/RetroRaceFixed/assets/117951387/ceac114f-ccc9-494f-85af-73880aa7e324">
 <img width="1440" alt="Screenshot 2024-05-02 at 8 43 57 PM" src="https://github.com/czenge25/RetroRaceFixed/assets/117951387/39b864a6-6399-47b2-ba1e-023422fc1cd1">
 
