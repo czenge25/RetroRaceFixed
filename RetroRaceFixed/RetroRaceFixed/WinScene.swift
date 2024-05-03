@@ -12,29 +12,21 @@ class WinScene: SKScene {
     
     override func didMove(to view: SKView) {
 
-        let congratulationLabel = SKLabelNode(fontNamed: "Arial")
-        congratulationLabel.text = "Congratulations! You win!"
-        congratulationLabel.fontSize = 100
-        congratulationLabel.position = CGPoint(x: size.width / 2, y: size.height / 2)
-        addChild(congratulationLabel)
-
-        let buttonSize = CGSize(width: 400, height: 120)
-        let playAgainButton = SKShapeNode(rectOf: buttonSize, cornerRadius: buttonSize.height / 2)
-        playAgainButton.fillColor = .blue
-        playAgainButton.strokeColor = .clear
-        playAgainButton.position = CGPoint(x: size.width / 2, y: size.height * 0.2)
-        playAgainButton.name = "playAgainButton"
-        addChild(playAgainButton)
-
-        let capsuleWidth = buttonSize.width
-        let capsuleHeight = buttonSize.height
-
-        let buttonText = SKLabelNode(fontNamed: "Arial")
-        buttonText.text = "Play Again"
-        buttonText.fontSize = 80
-        buttonText.fontColor = .white
-        buttonText.position = CGPoint(x: 0, y: -capsuleHeight * 0.2)
-        playAgainButton.addChild(buttonText)
+        backgroundColor = SKColor.lightGray
+        let titleLabel = SKLabelNode(fontNamed: "Courier New")
+        titleLabel.text = "RetroRace"
+        titleLabel.fontSize = 40
+        titleLabel.fontColor = SKColor.white
+        titleLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+        addChild(titleLabel)
+        let startButton = SKSpriteNode(imageNamed: "startbutton")
+        startButton.name = "startButton" // Set the name for identification
+        startButton.zPosition = 1
+        let width = startButton.size.width
+        let height = startButton.size.height
+        startButton.scale(to: CGSize(width: width * 0.2, height: height * 0.2))
+        startButton.position = CGPoint(x: frame.midX, y: frame.midY - startButton.size.height) // Adjusted for visibility
+        addChild(startButton)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -43,7 +35,7 @@ class WinScene: SKScene {
 
         let nodesAtPoint = nodes(at: location)
         for node in nodesAtPoint {
-            if node.name == "playAgainButton" {
+            if node.name == "startButton" {
                 if let scene = SKScene(fileNamed: "GameScene") {
                     scene.scaleMode = .aspectFill
                     view?.presentScene(scene, transition: SKTransition.fade(withDuration: 0.5))

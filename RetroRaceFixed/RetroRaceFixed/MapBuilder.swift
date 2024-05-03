@@ -62,7 +62,7 @@ class MapBuilder {
                 roadTile.yScale = 0.35
                 roadTile.xScale = 1.5
                 roadTile.zPosition = 1
-                roadTile.position.x = CGFloat(Int(roadTile.size.width) * i)
+                roadTile.position.x = CGFloat(Int(roadTile.size.width) * i) - roadTile.size.width
                 roadTile.position.y = 0
                 scene.addChild(roadTile)
                 lastRoadPosition = CGPoint(x: roadTile.position.x, y: roadTile.position.y)

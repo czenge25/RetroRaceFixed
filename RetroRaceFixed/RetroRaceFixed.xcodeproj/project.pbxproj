@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08253A2E2BE3DBBC009BECA7 /* audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 08253A2D2BE3DBBC009BECA7 /* audio.mp3 */; };
+		08253A302BE3DE2A009BECA7 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08253A2F2BE3DE2A009BECA7 /* MainMenuScene.swift */; };
 		0860DF352B7BD1E7000CF559 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DF342B7BD1E7000CF559 /* AppDelegate.swift */; };
 		0860DF372B7BD1E7000CF559 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0860DF362B7BD1E7000CF559 /* GameScene.sks */; };
 		0860DF392B7BD1E7000CF559 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0860DF382B7BD1E7000CF559 /* Actions.sks */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08253A2D2BE3DBBC009BECA7 /* audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = audio.mp3; path = ../../../../Downloads/sounds/audio.mp3; sourceTree = "<group>"; };
+		08253A2F2BE3DE2A009BECA7 /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		0860DF312B7BD1E7000CF559 /* RetroRaceFixed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RetroRaceFixed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0860DF342B7BD1E7000CF559 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0860DF362B7BD1E7000CF559 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -85,9 +89,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08253A2C2BE3DB60009BECA7 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				08253A2D2BE3DBBC009BECA7 /* audio.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		0860DF282B7BD1E7000CF559 = {
 			isa = PBXGroup;
 			children = (
+				08253A2C2BE3DB60009BECA7 /* Sounds */,
 				0860DF332B7BD1E7000CF559 /* RetroRaceFixed */,
 				0860DF4D2B7BD1E9000CF559 /* RetroRaceFixedTests */,
 				0860DF572B7BD1E9000CF559 /* RetroRaceFixedUITests */,
@@ -119,6 +132,7 @@
 				0860DF672B7BD3DF000CF559 /* MapBuilder.swift */,
 				08826FA62BBEF39C007CDF39 /* Player.swift */,
 				08786EC42BDFF4E500CE473B /* WinScene.swift */,
+				08253A2F2BE3DE2A009BECA7 /* MainMenuScene.swift */,
 			);
 			path = RetroRaceFixed;
 			sourceTree = "<group>";
@@ -245,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0860DF402B7BD1E7000CF559 /* Main.storyboard in Resources */,
+				08253A2E2BE3DBBC009BECA7 /* audio.mp3 in Resources */,
 				0860DF372B7BD1E7000CF559 /* GameScene.sks in Resources */,
 				0860DF422B7BD1E9000CF559 /* Assets.xcassets in Resources */,
 				0860DF452B7BD1E9000CF559 /* LaunchScreen.storyboard in Resources */,
@@ -278,6 +293,7 @@
 				0860DF3D2B7BD1E7000CF559 /* GameViewController.swift in Sources */,
 				08786EC52BDFF4E500CE473B /* WinScene.swift in Sources */,
 				08826FA72BBEF39C007CDF39 /* Player.swift in Sources */,
+				08253A302BE3DE2A009BECA7 /* MainMenuScene.swift in Sources */,
 				0860DF352B7BD1E7000CF559 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

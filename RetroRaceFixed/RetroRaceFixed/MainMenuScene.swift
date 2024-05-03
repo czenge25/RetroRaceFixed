@@ -34,9 +34,8 @@ class MainMenuScene: SKScene {
         gameScene = GameScene(size: self.size)
         if nodesArray.first?.name == "startButton" {
             let transition = SKTransition.fade(withDuration: 1.0) // Create a transition effect
-            let gameScene = GameScene(size: self.size) // Assuming your game scene is called GameScene
+            let gameScene = GameScene(size: view!.bounds.size)
             self.view?.presentScene(gameScene, transition: transition)
         }
     }
 }
-

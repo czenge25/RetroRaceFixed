@@ -1,10 +1,3 @@
-//
-//  Player.swift
-//  RetroRaceFixed
-//
-//  Created by Cameron Zenge on 4/4/24.
-//
-
 import Foundation
 import SpriteKit
 
@@ -14,9 +7,12 @@ class Player {
     var maxSpeed: CGFloat = 600.0
     var grassMaxSpeed: CGFloat?
     var currentMaxSpeed: CGFloat?
-    var acceleration: CGFloat = 4
+    var acceleration: CGFloat = 2 // Decreased acceleration for slower movement
     var grassAcceleration: CGFloat?
     var currentAcceleration: CGFloat?
+    var tractionCoefficient: CGFloat = 0.7 // Traction coefficient for grip on road surface
+    var grassTractionCoefficient: CGFloat = 0.3 // Traction coefficient for grip on grass
+    var decelerationRate: CGFloat = 0.999999 // Slower deceleration rate when no input is received
     var isBraking = false
     var isTouchingRoad = true
     
@@ -40,13 +36,13 @@ class Player {
         let xPosition = Double(joystickKnob.position.x)
         let yPosition = Double(joystickKnob.position.y)
         
-        // Apply friction based on whether the player is on road or grass
+        // Apply friction and traction based on whether the player is on road or grass
         if isTouchingRoad {
-            physicsBody.friction = 0.7
+            physicsBody.friction = tractionCoefficient
             self.currentAcceleration = acceleration
             self.currentMaxSpeed = maxSpeed
         } else {
-            physicsBody.friction = 0.3
+            physicsBody.friction = grassTractionCoefficient
             self.currentMaxSpeed = grassMaxSpeed
             self.currentAcceleration = grassAcceleration
         }
@@ -79,6 +75,12 @@ class Player {
         if speed > currentMaxSpeed {
             physicsBody.velocity.dx *= currentMaxSpeed / speed
             physicsBody.velocity.dy *= currentMaxSpeed / speed
+        }
+        
+        // Slow down gradually when no input is received
+        if !isBraking && (xPosition == 0 && yPosition == 0) {
+            physicsBody.velocity.dx *= decelerationRate
+            physicsBody.velocity.dy *= decelerationRate
         }
         
         // Set player's rotation angle
