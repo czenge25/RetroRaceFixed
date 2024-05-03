@@ -20,6 +20,7 @@ To install and run the RetroRace game:
 2. Clone this repository to your local machine.
 3. Open the RetroRaceFixed project in Xcode.
 5. Build and run the project using the Xcode simulator or connect a physical device.
+6. The game is best played in landscape mode.
 
 Here are 2 images of a successful run (Image 1 is the title screen) (Image 2 is the game after pressing the start button):
 <img width="1440" alt="Screenshot 2024-05-02 at 8 43 40 PM" src="https://github.com/czenge25/RetroRaceFixed/assets/117951387/ceac114f-ccc9-494f-85af-73880aa7e324">
